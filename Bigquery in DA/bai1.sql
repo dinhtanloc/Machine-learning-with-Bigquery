@@ -48,3 +48,43 @@ FROM
   `bigquery-public-data.google_analytics_sample.ga_sessions_*`
 WHERE 
   _TABLE_SUFFIX BETWEEN '20160801' AND '20170630'
+
+
+----------------EVALUATE.VALUE---------------------------
+SELECT
+     *
+FROM
+ ML.EVALUATE(MODEL `bqml_tutorial.sample_model`, (
+SELECT
+    IF(totals.transactions is NULL, 0, 1) as label,
+  IFNULL(device.operatingSystem, "") as os,
+  device.isMobile as isMobile,
+  IFNULL(geoNetwork.country,"") as country,
+  IFNULL(totals.pageviews,0) as pageviews
+FROM 
+  `bigquery-public-data.google_analytics_sample.ga_sessions_*`
+WHERE 
+  _TABLE_SUFFIX BETWEEN '20160801' AND '20170630'
+    )
+ )
+
+ ---------------ML.PREDICT------------------------
+ SELECT
+    country,
+    SUM(predicted_label) as total_predicted_purchases
+FROM
+    ML.PREDICT(MODEL `bqml_tutorial.sample_model`,(
+        SELECT
+            IF(totals.transactions is NULL, 0, 1) as label,
+            IFNULL(device.operatingSystem, "") as os,
+            device.isMobile as isMobile,
+            IFNULL(geoNetwork.country,"") as country,
+            IFNULL(totals.pageviews,0) as pageviews
+        FROM 
+        `bigquery-public-data.google_analytics_sample.ga_sessions_*`
+        WHERE 
+        _TABLE_SUFFIX BETWEEN '20160801' AND '20170630'
+    ))
+GROUP BY country
+ORDER BY total_predicted_purchases DESC 
+LIMIT 10
