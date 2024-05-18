@@ -54,7 +54,7 @@ WHERE
 SELECT
      *
 FROM
- ML.EVALUATE(MODEL `bqml_tutorial.sample_model`, (
+ ML.EVALUATE(MODEL `da04-k291-423718.DA04_K294.trans_model`, (
 SELECT
     IF(totals.transactions is NULL, 0, 1) as label,
   IFNULL(device.operatingSystem, "") as os,
@@ -73,7 +73,7 @@ WHERE
     country,
     SUM(predicted_label) as total_predicted_purchases
 FROM
-    ML.PREDICT(MODEL `bqml_tutorial.sample_model`,(
+    ML.PREDICT(MODEL `da04-k291-423718.DA04_K294.trans_model`,(
         SELECT
             IF(totals.transactions is NULL, 0, 1) as label,
             IFNULL(device.operatingSystem, "") as os,
