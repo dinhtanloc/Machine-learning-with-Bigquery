@@ -1,0 +1,183 @@
+Irregularity trong bài toán chuỗi thời gian (time series) đề cập đến sự không đều và không theo một mô hình định kỳ hoặc chuỗi trong dữ liệu. Nó thể hiện sự biến động ngẫu nhiên hoặc không thường xuyên trong dữ liệu mà không thể dự đoán trước được.
+
+Irregularity có thể xuất hiện dưới nhiều hình thức khác nhau, bao gồm:
+
+1. **Nhiễu (Noise)**: Sự biến động ngẫu nhiên hoặc ngẫu nhiên trong dữ liệu mà không có một nguyên nhân hoặc mô hình xác định. Nhiễu thường làm cho việc phân tích và dự đoán dữ liệu trở nên khó khăn.
+
+2. **Biến động không đều (Uneven Fluctuations)**: Sự thay đổi không đều hoặc không đồng đều trong dữ liệu mà không tuân theo một mô hình định kỳ. Điều này có thể là do yếu tố ngẫu nhiên hoặc các biến động không dự đoán được.
+
+3. **Sự kiện đột ngột (Sudden Events)**: Các sự kiện không mong đợi hoặc đột ngột có thể gây ra sự không đều trong dữ liệu, nhưng không tuân theo một chu kỳ hoặc mô hình xác định.
+
+Irregularity có thể gây khó khăn cho việc xây dựng mô hình và dự đoán chuỗi thời gian, vì nó thể hiện sự không chắc chắn và không đồng nhất trong dữ liệu. Để xử lý irregularity, có thể sử dụng các kỹ thuật xử lý nhiễu, loại bỏ các ngoại lệ (outliers), hoặc sử dụng mô hình có khả năng mô hình hóa và dự đoán sự biến động không đều trong dữ liệu.
+
+--------------------------------------------------------------------------------------------------------------
+Trong bài toán chuỗi thời gian (time series), stationarity (tĩnh không đổi) là một thuộc tính của dữ liệu mà các thống kê mô tả của nó không thay đổi theo thời gian. Điều này có nghĩa là các tính chất thống kê của dữ liệu, như trung bình và phương sai, duy trì không đổi qua thời gian.
+
+Một chuỗi thời gian được coi là stationary nếu nó thỏa mãn ba điều kiện sau:
+1. **Tính chất tự hồi quy (Autocovariance)**: Tính hệ thống của dữ liệu không thay đổi qua thời gian. Điều này có thể được biểu thị qua sự biến đổi nhỏ giữa các giá trị dữ liệu ở các thời điểm khác nhau.
+2. **Tính chất trung bình (Mean)**: Trung bình của chuỗi thời gian không thay đổi qua thời gian. Nó được xác định bởi sự ổn định của giá trị trung bình của dữ liệu qua các khoảng thời gian.
+3. **Tính chất phương sai (Variance)**: Phương sai của chuỗi thời gian không thay đổi qua thời gian. Điều này có nghĩa là biến động của dữ liệu cũng duy trì ở mức độ ổn định qua các khoảng thời gian.
+
+Khi chuỗi thời gian là stationary, việc mô hình hóa và dự đoán trở nên dễ dàng hơn, vì các tính chất của dữ liệu không thay đổi qua thời gian. Tuy nhiên, trong thực tế, nhiều chuỗi thời gian không phải luôn luôn stationary và có thể cần phải được chuyển đổi để đạt được tính chất này trước khi áp dụng các phương pháp mô hình hóa và dự đoán.
+
+----------------------------------------------------------------------------
+
+Có một số điều kiện cụ thể cần phải được đáp ứng để một chuỗi thời gian được coi là stationary:
+
+1. **Tính chất tự hồi quy (Autocovariance Stationarity)**:
+   - Độ đo của tương quan giữa các giá trị dữ liệu ở các thời điểm khác nhau không thay đổi qua thời gian.
+   - Tính chất này thường được kiểm tra bằng cách xem xét hàm tương quan tự hồi quy (autocovariance) hoặc hàm tương quan tự hồi quy (autocorrelation) của chuỗi thời gian. Nếu hàm tương quan giảm dần và ổn định qua các lag (khoảng cách thời gian giữa các quan sát), thì chuỗi thời gian có thể được coi là stationary.
+
+2. **Tính chất trung bình (Mean Stationarity)**:
+   - Trung bình của chuỗi thời gian không thay đổi qua thời gian.
+   - Điều này có nghĩa là giá trị trung bình của chuỗi thời gian là không đổi và ổn định qua các khoảng thời gian.
+
+3. **Tính chất phương sai (Variance Stationarity)**:
+   - Phương sai của chuỗi thời gian không thay đổi qua thời gian.
+   - Điều này có nghĩa là mức độ biến động của dữ liệu, biểu thị bởi phương sai, là không đổi và ổn định qua các khoảng thời gian.
+
+Để kiểm tra xem một chuỗi thời gian có đáp ứng được các điều kiện trên hay không, ta thường sử dụng các kỹ thuật thống kê và phân tích dữ liệu như phân tích biểu đồ, kiểm định thống kê, và phân tích tương quan tự hồi quy. Nếu chuỗi thời gian không đáp ứng được các điều kiện này, ta có thể cần phải thực hiện các biện pháp biến đổi dữ liệu để đạt được tính chất stationary trước khi áp dụng các phương pháp mô hình hóa và dự đoán.
+-------------------------------------------------------------------------------------------------
+
+Dickey-Fuller test là một phương pháp thống kê được sử dụng để kiểm tra tính chất stationary của một chuỗi thời gian. Nó là một trong những kiểm định phổ biến nhất trong lĩnh vực phân tích chuỗi thời gian.
+
+Mục tiêu của Dickey-Fuller test là xác định xem một chuỗi thời gian có tính chất stationary hay không bằng cách kiểm tra giả thuyết không gian stationary. Phương pháp này được phát triển bởi hai nhà kinh tế Charles W. J. Dickey và Wayne A. Fuller vào những năm 1970.
+
+Quy trình kiểm tra Dickey-Fuller test thường bao gồm các bước sau:
+
+1. **Xây dựng giả thuyết (null hypothesis)**: Giả thuyết null của kiểm định là chuỗi thời gian không phải là stationary.
+
+2. **Xây dựng mô hình (model construction)**: Sử dụng một mô hình tuyến tính để mô hình hóa chuỗi thời gian. Mô hình thường sử dụng là một quá trình autoregressive (AR) với một lag.
+
+3. **Tính toán giá trị kiểm định (compute the test statistic)**: Tính toán giá trị kiểm định từ mô hình được xây dựng. Giá trị kiểm định được sử dụng để so sánh với một ngưỡng (cutoff) để quyết định liệu có thể bác bỏ giả thuyết null hay không.
+
+4. **So sánh với ngưỡng (compare with a threshold)**: So sánh giá trị kiểm định với một ngưỡng xác định trước (cutoff) để quyết định xem chuỗi thời gian có stationary hay không.
+
+5. **Đưa ra kết luận (make a conclusion)**: Dựa trên kết quả kiểm định, đưa ra kết luận về tính chất stationary của chuỗi thời gian. Nếu giá trị kiểm định nhỏ hơn ngưỡng, ta có thể bác bỏ giả thuyết null và kết luận rằng chuỗi thời gian là stationary.
+
+Dickey-Fuller test có thể được thực hiện bằng cách sử dụng các thư viện thống kê trong ngôn ngữ lập trình như Python (ví dụ: statsmodels) hoặc các công cụ phân tích dữ liệu thống kê khác.
+--------------------------------------------------------------------------------------------------
+ACF (Autocorrelation Function) và PACF (Partial Autocorrelation Function) là hai biểu đồ thường được sử dụng trong phân tích chuỗi thời gian để kiểm tra mức độ tương quan và tương quan riêng lẻ giữa các giá trị trong chuỗi thời gian.
+
+1. **ACF (Autocorrelation Function)**:
+   - Biểu đồ ACF biểu diễn mức độ tương quan giữa các giá trị trong chuỗi thời gian và các giá trị trước đó của chính nó.
+   - Một giá trị ACF gần với 1 hoặc -1 cho thấy mức độ tương quan cao giữa các giá trị trong chuỗi thời gian và các giá trị trước đó của chính nó. Một giá trị gần 0 cho thấy không có tương quan.
+   - Biểu đồ ACF thường được sử dụng để xác định các lags trong mô hình dự báo chuỗi thời gian.
+
+2. **PACF (Partial Autocorrelation Function)**:
+   - Biểu đồ PACF biểu diễn mức độ tương quan giữa các giá trị trong chuỗi thời gian và các giá trị trước đó của chính nó, loại trừ ảnh hưởng của các giá trị lag trung gian.
+   - PACF được sử dụng để xác định mô hình autoregressive (AR) của chuỗi thời gian, bằng cách xác định số lượng lags cần sử dụng trong mô hình.
+
+Cả hai biểu đồ này thường được sử dụng để giúp chọn lựa mô hình phù hợp cho chuỗi thời gian và đưa ra dự báo cho các giá trị trong tương lai.
+
+Dưới đây là một ví dụ và phân tích về cách sử dụng ACF và PACF trong phân tích chuỗi thời gian:
+
+**Ví dụ:**
+Giả sử chúng ta có một chuỗi thời gian biểu diễn lượng bán hàng hàng ngày trong một cửa hàng trong vòng một năm. Chúng ta muốn phân tích chuỗi này để đưa ra dự báo cho các mức bán hàng trong tương lai.
+
+**Phân tích:**
+1. **Biểu đồ ACF:**
+   - Nếu biểu đồ ACF hiển thị một mẫu dần giảm và chậm dần về 0 khi các lags tăng lên, điều này có thể ngụ ý rằng chuỗi có tính chất tự hồi quy (autoregressive).
+   - Trong trường hợp này, chúng ta có thể chọn một mô hình AR.
+   - Nếu có một đỉnh đột ngột ở lag đầu tiên, đó có thể là một dấu hiệu cho phép phương sai của chuỗi không ổn định và cần phải được ổn định hóa trước khi phân tích tiếp.
+   
+2. **Biểu đồ PACF:**
+   - Biểu đồ PACF thường được sử dụng để xác định số lượng lags (p) trong mô hình autoregressive (AR).
+   - Nếu PACF có một đỉnh ở lag đầu tiên và giảm đột ngột về 0, điều này có thể ngụ ý rằng chỉ có một lag đầu tiên quan trọng trong mô hình.
+   - Nếu có nhiều lags có giá trị lớn và sau đó giảm dần về 0, điều này có thể ngụ ý rằng có nhiều lags quan trọng trong mô hình.
+
+**Kết luận:**
+Dựa trên biểu đồ ACF và PACF, chúng ta có thể chọn ra một mô hình autoregressive phù hợp (AR) với một hoặc một số lags quan trọng. Sau đó, chúng ta có thể sử dụng mô hình này để dự báo lượng bán hàng trong tương lai dựa trên các giá trị quan sát trước đó trong chuỗi thời gian.
+
+----------------------------------------------------------------------------------------
+Trong phân tích chuỗi thời gian, "lag" (độ trễ) đề cập đến giá trị của biến tại một thời điểm trước đó so với thời điểm hiện tại. Trong ngữ cảnh của chuỗi thời gian, lag thường được đo bằng số lượng bước thời gian (có thể là ngày, tuần, tháng, năm, vv.).
+
+Ví dụ, nếu bạn đang xem xét lượng bán hàng hàng ngày và bạn muốn biết tác động của lượng bán hàng ở ngày hôm trước đến lượng bán hàng hôm nay, bạn sẽ sử dụng lag 1 (là một lag). Tương tự, lag 2 sẽ đề cập đến tác động của lượng bán hàng hai ngày trước đến lượng bán hàng hôm nay, và cứ tiếp tục như vậy cho tới lag n.
+
+Sử dụng các lag là cách để phân tích mối quan hệ giữa các quan sát trong chuỗi thời gian và đánh giá mức độ ảnh hưởng của các quan sát trước đó đến quan sát hiện tại. Trong phân tích chuỗi thời gian, việc xác định lag quan trọng và sử dụng chúng trong mô hình có thể giúp dự báo và hiểu được xu hướng và biến động của dữ liệu.
+--------------------------------------------------------------------------------
+Mô hình Moving Average (MA) là một trong những mô hình cơ bản trong phân tích chuỗi thời gian. Mô hình này được sử dụng để mô phỏng và dự đoán các biến phụ thuộc dựa trên giá trị trung bình của các biến đó và nhiễu ngẫu nhiên. Dưới đây là một số điểm quan trọng về mô hình MA:
+
+1. **Khái niệm**:
+   - Mô hình Moving Average (MA) giải thích mối quan hệ giữa một biến phụ thuộc và một số giá trị ngẫu nhiên (nhiễu) trong quá khứ.
+   - Mô hình MA giả định rằng giá trị hiện tại của biến phụ thuộc phụ thuộc vào giá trị trung bình của nhiễu trong quá khứ, thay vì giá trị của biến phụ thuộc trong quá khứ như trong mô hình Autoregressive (AR).
+
+2. **Biểu diễn toán học**:
+   - Một mô hình MA thường được ký hiệu bằng MA(q), trong đó q là số lượng lags của nhiễu mà mô hình sử dụng để dự đoán giá trị hiện tại.
+   - Mô hình MA(q) được biểu diễn dưới dạng công thức toán học như sau: 
+     Y(t) = μ + ε(t) + θ₁*ε(t-1) + θ₂*ε(t-2) + ... + θq*ε(t-q)
+     Trong đó:
+     - Y(t) là giá trị của biến phụ thuộc tại thời điểm t.
+     - μ là giá trị trung bình của biến phụ thuộc.
+     - ε(t), ε(t-1), ..., ε(t-q) là các giá trị ngẫu nhiên (nhiễu) tại các lag tương ứng.
+     - θ₁, θ₂, ..., θq là các hệ số của các lag nhiễu.
+
+3. **Ưu điểm và hạn chế**:
+   - Ưu điểm: Mô hình MA thích hợp cho các dữ liệu có yếu tố nhiễu không ổn định hoặc có xu hướng biến đổi theo thời gian.
+   - Hạn chế: Mô hình MA không thể xử lý các dữ liệu có xu hướng tăng/giảm theo thời gian mà không cần sự điều chỉnh.
+
+Trong thực tế, mô hình MA thường được kết hợp với mô hình Autoregressive (AR) để tạo thành mô hình Autoregressive Moving Average (ARMA) hoặc mô hình Autoregressive Integrated Moving Average (ARIMA) để giải quyết các vấn đề phức tạp hơn trong phân tích chuỗi thời gian.
+----------------------------------------------------------------
+Trong ví dụ trên, bạn đang sử dụng BigQuery để xây dựng một mô hình ARIMA_PLUS để dự đoán độ ẩm trung bình (`AvgHumidity`) dựa trên dữ liệu thời tiết của Istanbul từ bảng `istanbul_clean`. Dưới đây là giải thích từng phần của câu lệnh:
+
+1. `CREATE OR REPLACE MODEL arima.weather_forecast`: Bạn đang tạo hoặc thay thế một mô hình với tên `weather_forecast` trong dataset `arima`.
+
+2. `OPTIONS`: Đây là phần để cung cấp các tùy chọn cho mô hình. Trong đoạn mã của bạn, bạn đang sử dụng `model_type = 'ARIMA_PLUS'` để chỉ định loại mô hình là ARIMA_PLUS, là một phiên bản mở rộng của ARIMA trong BigQuery. Bạn cũng chỉ định cột chứa thông tin timestamp của dữ liệu (`time_series_timestamp_col = 'parsed_date'`) và cột chứa dữ liệu chuỗi thời gian (`time_series_data_col = 'AvgHumidity'`).
+
+3. `AS SELECT * FROM `bq-ml-332311.arima.istanbul_clean` ORDER BY parsed_date LIMIT 3531`: Đây là phần truy vấn SQL để lựa chọn dữ liệu cho việc xây dựng mô hình. Bạn đang chọn tất cả các cột từ bảng `istanbul_clean`, sắp xếp chúng theo cột thời gian (`parsed_date`), và giới hạn số lượng hàng lấy ra là 3531.
+
+Sau khi bạn đã xây dựng mô hình, bạn muốn đánh giá hiệu suất của nó. Đoạn mã tiếp theo thực hiện việc này:
+
+4. `ml.evaluate`: Đây là hàm để đánh giá mô hình đã được xây dựng. Bạn đang đánh giá mô hình `weather_forecast` trên bảng dữ liệu `istanbul_clean`. Trong đoạn mã, bạn cung cấp một cấu trúc có các tham số sau:
+   - `PERFORM_AGGREGATION`: Bạn đang đặt giá trị là FALSE, nghĩa là không thực hiện tổng hợp các dự đoán.
+   - `CONFIDENCE_LEVEL`: Mức độ tin cậy của dự đoán, ở đây là 0.9.
+   - `HORIZON`: Khoảng thời gian trong tương lai bạn muốn dự đoán, ở đây là 365 ngày.
+
+Cuối cùng, kết quả được lấy ra từ việc đánh giá mô hình và được sắp xếp theo thời gian.
+
+
+--------------------------------evaluation
+
+Dựa trên các giá trị trong bảng kết quả của mô hình ARIMA, mỗi hàng biểu diễn một kết hợp cụ thể của các tham số và các chỉ số đánh giá của mô hình. Dưới đây là một phân tích chi tiết về mỗi cột và giá trị trong từng hàng:
+
+Non Seasonal P, D, Q: Các tham số này xác định cấu trúc của mô hình ARIMA, bao gồm bậc của thành phần tự hồi quy (P), chênh lệch (D), và trung bình chuyển động (Q). Chúng cho biết mức độ của sự phụ thuộc của mỗi quan sát hiện tại vào các quan sát trước đó và các sai số trước đó.
+Has Drift: Đặc tính này cho biết xem mô hình có tính đến yếu tố trôi lệch không, tức là xu hướng tăng hoặc giảm dần dẫn đến sự biến đổi dài hạn của dữ liệu.
+Has Spikes And Dips: Đây là một tính năng để xem xét các biến động đột ngột, có thể là các đỉnh (spikes) hoặc sụt giảm (dips) không thường xuyên trong dữ liệu.
+Has Holiday Effect: Tính năng này đo lường liệu mô hình có tính đến ảnh hưởng của các ngày lễ hoặc các sự kiện đặc biệt khác đối với dữ liệu không.
+Has Step Changes: Đặc điểm này xem xét các thay đổi đột ngột trong dữ liệu, mà không phải do các yếu tố thông thường khác như mùa vụ hay ngày lễ.
+Log Likelihood: Log của hàm hợp lý được sử dụng để đo lường mức độ phù hợp của mô hình với dữ liệu. Giá trị càng cao cho thấy mô hình phù hợp tốt hơn với dữ liệu.
+AIC (Akaike Information Criterion): Đây là một chỉ số đánh giá mức độ phù hợp của mô hình dựa trên số lượng tham số và phương sai của các sai số. Giá trị thấp của AIC cho thấy mô hình tốt hơn.
+Variance: Đo lường phương sai của các sai số của mô hình. Phương sai càng thấp, mô hình càng chính xác.
+Seasonal Period: Xác định chu kỳ của bất kỳ tác động mùa vụ nào trong dữ liệu, ví dụ như một chu kỳ hàng tuần hoặc hàng năm.
+
+--------------------------------
+
+Để đánh giá liệu kết quả của mô hình ARIMA có tốt không, bạn cần xem xét các yếu tố sau:
+
+Log Likelihood và AIC: Khi log likelihood cao và AIC thấp, điều này cho thấy mô hình phù hợp tốt với dữ liệu. Các giá trị này đều thấp và gần nhau là một dấu hiệu tốt.
+Variance: Phương sai thấp của các sai số của mô hình là một dấu hiệu tích cực, vì nó cho thấy mô hình dự báo có thể giải thích một phần lớn biến thiên trong dữ liệu.
+Các Đặc Điểm Khác: Các tính năng như sự có mặt của drift, spikes and dips, holiday effect và step changes cũng quan trọng. Nếu mô hình có các tính năng này, điều này có thể giúp cải thiện khả năng dự báo của mô hình.
+Kiểm tra Độ Tin Cậy: Đôi khi, việc kiểm tra dữ liệu ngoại lệ, kiểm tra các giả định của mô hình và thử nghiệm mô hình trên dữ liệu kiểm tra có thể cung cấp cái nhìn sâu hơn về hiệu suất của mô hình.
+So Sánh với Mô Hình Khác: Thường xuyên, việc so sánh kết quả của mô hình ARIMA này với các mô hình khác như mô hình dự báo đơn giản (ví dụ: trung bình trượt động) có thể giúp xác định liệu mô hình ARIMA có hiệu quả hơn không.
+Tóm lại, để đưa ra kết luận về việc liệu kết quả của mô hình ARIMA có tốt không, bạn cần xem xét tất cả các yếu tố trên và đảm bảo rằng mô hình phù hợp tốt với mục tiêu dự báo cụ thể của bạn.
+
+
+
+
+
+Dưới đây là các giải thích chi tiết cho từng truy vấn:
+
+Dự Báo (FORECAST):
+Truy vấn này sử dụng mô hình ARIMA đã được huấn luyện ("arima.weather_forecast") để thực hiện dự báo.
+Dự báo được thực hiện cho một ngưỡng thời gian tiền định ("horizon") là 10, nghĩa là sẽ dự báo 10 quan sát tiếp theo sau quan sát cuối cùng trong tập dữ liệu.
+Mức độ tin cậy ("confidence_level") được đặt là 0.9, cho thấy mức tin cậy 90% trong dự báo.
+Phát Hiện Bất Thường (DETECT_ANOMALIES):
+Truy vấn này sử dụng mô hình ARIMA đã được huấn luyện để phát hiện bất thường trong dữ liệu.
+Mức ngưỡng xác suất cho phép sự bất thường ("anomaly_prob_threshold") được đặt là 0.9, chỉ ra rằng một sự kiện được coi là bất thường nếu xác suất của nó vượt quá 90%.
+Hệ Số ARIMA (ARIMA_COEFFICIENTS):
+Truy vấn này trích xuất các hệ số của mô hình ARIMA đã được huấn luyện, bao gồm các hệ số của thành phần tự hồi quy, chênh lệch và trung bình chuyển động.
+Giải Thích Dự Báo (EXPLAIN_FORECAST):
+Truy vấn này cung cấp giải thích cho các dự báo được tạo ra bởi mô hình ARIMA.
+Nó có thể cung cấp thông tin về cách mỗi yếu tố ảnh hưởng đến dự báo, giúp hiểu rõ hơn về cơ chế mà mô hình sử dụng để thực hiện dự báo.
+Mỗi truy vấn phục vụ mục đích cụ thể trong việc phân tích và hiểu mô hình ARIMA, từ việc tạo dự báo đến phát hiện bất thường và giải thích cơ chế dự báo.
+

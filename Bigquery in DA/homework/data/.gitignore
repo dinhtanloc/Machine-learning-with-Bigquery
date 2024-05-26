@@ -1,0 +1,8 @@
+*.zip
+*.png
+*.jpg
+*.txt
+*.csv
+.history
+*.docx
+*.xlsx

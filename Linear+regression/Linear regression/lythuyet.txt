@@ -1,0 +1,43 @@
+L2 regularization là một kỹ thuật trong machine learning được sử dụng để giảm overfitting trong mô hình học máy. Nó hoạt động bằng cách thêm một thành phần regularization vào hàm mất mát của mô hình, dựa trên tổng bình phương của các trọng số (weights) của mô hình. L2 regularization thường được biểu diễn bằng công thức:
+
+\[ \text{L2 regularization term} = \lambda \sum_{i=1}^{n} w_i^2 \]
+
+Trong đó:
+- \( \lambda \) là hệ số regularization, còn được gọi là hệ số tỷ lệ hoặc hệ số phạt.
+- \( w_i \) là trọng số tương ứng với đặc trưng thứ \( i \) trong mô hình.
+- \( n \) là số lượng đặc trưng trong mô hình.
+
+L2 regularization giúp kiểm soát sự phức tạp của mô hình bằng cách giảm trọng số của các đặc trưng không quan trọng (có giá trị gần bằng 0) và ngăn chặn các trọng số quá lớn. Điều này giúp mô hình trở nên ổn định hơn và chống lại overfitting.
+
+Ridge regression là một thuật toán hồi quy tuyến tính sử dụng L2 regularization để tối ưu hóa mô hình. Trong Ridge regression, hàm mất mát bao gồm cả thành phần mất mát từ việc tối ưu hóa mục tiêu (ví dụ: bình phương sai số) và thành phần regularization L2. Ridge regression giúp cải thiện hiệu suất của mô hình và giảm overfitting, đặc biệt là khi có nhiều đặc trưng trong dữ liệu và các đặc trưng có độ tương quan cao.
+
+L1 regularization, còn được gọi là Lasso regularization, cũng là một kỹ thuật regularization trong machine learning như L2 regularization. Mục tiêu chung của cả hai kỹ thuật này là giảm overfitting và cải thiện hiệu suất của mô hình.
+
+Tuy nhiên, L1 regularization khác biệt với L2 regularization ở điểm sau:
+
+1. **Norm sử dụng**: Trong L1 regularization, chúng ta sử dụng norm \( L_1 \) của vector trọng số để tính regularization term, trong khi L2 regularization sử dụng norm \( L_2 \).
+
+2. **Hiệu ứng trên trọng số của mô hình**: L1 regularization có xu hướng làm cho một số trọng số của mô hình trở thành 0, từ đó giảm số lượng đặc trưng được sử dụng trong mô hình (sparse model). Điều này làm cho L1 regularization thích hợp cho việc lựa chọn đặc trưng (feature selection). Trong khi đó, L2 regularization thường không làm cho các trọng số trở thành 0, mà chỉ giảm giá trị của chúng.
+
+3. **Regularization term**: Regularization term trong L1 regularization là tổng các giá trị tuyệt đối của các trọng số:
+
+\[ \text{L1 regularization term} = \lambda \sum_{i=1}^{n} |w_i| \]
+
+Trong khi đó, trong L2 regularization, regularization term là tổng bình phương của các trọng số:
+
+\[ \text{L2 regularization term} = \lambda \sum_{i=1}^{n} w_i^2 \]
+
+Do cách tính toán khác nhau, L1 regularization thường tạo ra các mô hình sparse (thưa) với một số trọng số có giá trị là 0, trong khi L2 regularization tạo ra các mô hình với trọng số phân bố một cách đồng đều hơn.
+
+
+ML.TRAINING_INFO Function
+In addition to ML.EVALUATE function, there is an additional ML.TRAINING_INFO function that allows you to see information about the training iterations of a model. You can view per iteration details of model using this function.
+
+SELECT * FROM ML.TRAINING_INFO(MODEL `regression.house_prices`)
+
+
+
+
+You can run this function while the CREATE MODEL query is running, or after it is run. But If you run it before the first training iteration is complete, then obviously it would return a “Not found” error.
+
+Limitation: ML.TRAINING_INFO function also does not work with Imported TensorFlow models and for Time series model which is discussed further in the course, this function only returns three columns: training_run, iteration, and duration_ms.
