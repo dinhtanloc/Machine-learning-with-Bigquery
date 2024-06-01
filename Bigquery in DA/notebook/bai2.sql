@@ -78,3 +78,49 @@ SELECT
 *
 FROM 
     ML.WEIGHTS(MODEL `da04-k291-423718.DA04_K294.weather_linear_model`)
+
+----------------------------------------------
+-- Case study GemStone EDA
+SELECT COUNT(*) FROM `da04-k291-423718.DA04_K294.cubic_zircona`
+
+SELECT * FROM `da04-k291-423718.DA04_K294.cubic_zircona` LIMIT 5
+
+--Create model
+CREATE OR REPLACE MODEL `da04-k291-423718.DA04_K294.cubic_zircona_model`
+OPTIONS(
+    MODEL_TYPE='LINEAR_REG', 
+    INPUT_LABEL_COLS = ['price']
+    ) AS
+SELECT * --------------------Preprocessing------------
+  EXCEPT (depth, int64_field_0)
+FROM 
+  `da04-k291-423718.DA04_K294.cubic_zircona`
+WHERE 
+  price IS NOT NULL AND price <=6000
+
+
+--Evaluation test sample
+SELECT * FROM ML.EVALUATE(MODEL `da04-k291-423718.DA04_K294.cubic_zircona_model` )
+
+-- Minh se dung mo hinh nay de du doan 21000 vien da
+SELECT AVG(price) AS mean_price, STDDEV(price) AS std_price
+FROM 
+  `da04-k291-423718.DA04_K294.cubic_zircona`
+WHERE 
+  price IS NOT NULL AND price <=6000
+
+
+  --Predict
+SELECT
+*
+FROM ML.PREDICT(MODEL `da04-k291-423718.DA04_K294.cubic_zircona_model`, (
+  SELECT 1.5 as carat,
+  "Fair" as cut,
+  "G" as color,
+  "VS2" as clarity,
+  54 as table ,
+  7.2 as x,
+  7.1 as y,
+  4.7 as z,
+  )
+);
