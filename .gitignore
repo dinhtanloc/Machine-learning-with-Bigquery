@@ -5,4 +5,5 @@
 *.csv
 .history
 *.docx
+*.pdf
 *.xlsx
